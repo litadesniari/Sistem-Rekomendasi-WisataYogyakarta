@@ -1,9 +1,8 @@
 # Laporan Proyek Machine Learning - Ni Gusti Putu Saniskalita Desniari
 
 ## Project Overview
-<div style="text-align: center;">
-  <img src="image/yogyakarta.png" alt="Yogyakarta" />
-</div>
+
+![Cover](image/yogyakarta.png)
 
 Sektor pariwisata merupakan salah satu penggerak utama perekonomian Indonesia yang terus berkembang. Daerah Istimewa Yogyakarta (DIY) dikenal luas sebagai salah satu destinasi wisata unggulan di Tanah Air, berkat kekayaan budaya, sejarah, seni, dan keindahan alamnya yang memikat. Mulai dari Candi Prambanan yang megah, Keraton Yogyakarta yang sarat nilai tradisi, hingga pantai-pantai eksotis seperti Parangtritis, Yogyakarta menawarkan pengalaman wisata yang beragam dan menarik. Namun, banyaknya pilihan destinasi wisata sering kali membuat wisatawan merasa bingung dalam menentukan tempat mana yang paling sesuai dengan minat dan preferensi pribadi mereka.
 
@@ -112,9 +111,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 ### Data Understanding untuk Place Dataset
 - **Filter Wisata berdasarkan Wilayah Yogyakarta**
 
-    <div style="text-align: center;">
-    <img src="image/placefilter.png" alt="Filter Wilayah" />
-    </div>
+    ![Filter Wilayah](image/placefilter.png)
 
     Dengan menggunakan perintah berikut:
     ```python
@@ -128,9 +125,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 
 - **Pengecekan Informasi Dataset**
 
-    <div style="text-align: center;">
-    <img src="image/placeinfo.png" alt="Place Info" />
-    </div>
+    ![Place Info](image/placeinfo.png)
 
     Berdasarkan hasil pemanggilan fungsi `place.info()`, dataset `tourism_with_id.csv` terdiri dari 126 entri dengan 13 kolom. Kolom-kolom tersebut mencakup informasi penting terkait tempat wisata, seperti `Place_Id`, `Place_Name`, `Description`, `Category`, `City`, `Price`, `Rating`, serta `Lat` dan `Long` yang menunjukkan koordinat lokasi. Informasi ini sangat relevan untuk digunakan dalam sistem rekomendasi, khususnya yang berbasis content-based filtering, karena memungkinkan pencocokan berdasarkan atribut destinasi.
 
@@ -144,9 +139,8 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
         # Memeriksa missing value
         place.isnull().sum()
     ```
-    <div style="text-align: center;">
-    <img src="image/mvplace.png" alt="Missing Place" />
-    </div> 
+
+    ![Missing Place](image/mvplace.png)
 
     Adanyanya missing value pada kolom Time_Minutes dan Unnamed: 11. Namun, kolom-kolom ini tidak relevan dalam konteks sistem rekomendasi berbasis content-based filtering dan collaborative filtering, sehingga sebaiknya dihapus agar tidak menambah kompleksitas data.
 
@@ -164,9 +158,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 ### Data Understanding untuk Rating Dataset
 - **Filter Rating berdasarkan Wisata Wilayah Yogyakarta**
 
-    <div style="text-align: center;">
-    <img src="image/ratingfilter.png" alt="Filter Rating" />
-    </div>
+    ![Filter Rating](image/ratingfilter.png)
 
     Untuk memastikan sistem rekomendasi hanya memberikan saran tempat wisata yang berada di Kota Yogyakarta, maka dilakukan proses filter pada data `tourism_rating.csv`. Pertama, diambil daftar `Place_Id` dari data `tourism_with_id.csv` yang berlokasi di Yogyakarta. Selanjutnya, data rating difilter agar hanya menyertakan interaksi (rating) yang diberikan pada tempat-tempat wisata di Yogyakarta. Berikut adalah kode yang digunakan:
 
@@ -184,9 +176,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 
 - **Pengecekan Informasi Dataset**
 
-    <div style="text-align: center;">
-    <img src="image/ratinginfo.png" alt="Rating Info" />
-    </div>
+    ![Rating Info](image/ratinginfo.png)
 
     Berdasarkan hasil pemeriksaan terhadap dataset `tourism_rating.csv` menggunakan fungsi `info()`, dataset ini terdiri dari 2.871 entri dengan 3 kolom, yaitu `User_Id`, `Place_Id`, dan `Place_Ratings`. Ketiga kolom memiliki jumlah data non-null yang lengkap, yang berarti tidak terdapat nilai yang hilang (missing value). Hal ini menunjukkan bahwa dataset dalam kondisi baik dan siap digunakan untuk proses analisis serta pembangunan model sistem rekomendasi.
 
@@ -194,17 +184,13 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 
 - **Pengecekan Missing Value**
 
-    <div style="text-align: center;">
-    <img src="image/mvrating.png" alt="Missing Rating" />
-    </div>
+    ![Missing Rating](image/mvrating.png)
 
     Berdasarkan hasil pemeriksaan menggunakan fungsi `isnull().sum()` pada dataset `tourism_rating.csv`, ditemukan bahwa tidak terdapat nilai yang hilang (missing values) pada ketiga kolom, yaitu `User_Id`, `Place_Id`, dan `Place_Ratings`. Seluruh kolom menunjukkan nilai 0 untuk jumlah data kosong, yang menandakan bahwa dataset ini telah lengkap dan tidak memerlukan proses imputasi atau penanganan data hilang sebelum digunakan dalam analisis atau pembangunan sistem rekomendasi. Struktur data yang bersih ini menjadi keunggulan karena dapat langsung dimanfaatkan dalam proses pelatihan model rekomendasi tanpa perlu preprocessing tambahan terkait missing values.
 
 - **Pengecekan Data Duplikat**
 
-    <div style="text-align: center;">
-    <img src="image/duplicaterating.png" alt="Duplikasi Rating" />
-    </div>
+    ![Duplikasi Rating](image/duplicaterating.png)
 
     Untuk memastikan kualitas data sebelum digunakan dalam proses pembangunan sistem rekomendasi, dilakukan pemeriksaan terhadap keberadaan data duplikat pada dataset `tourism_rating.csv` menggunakan fungsi `duplicated().sum()`. Hasilnya menunjukkan terdapat **23 baris data yang teridentifikasi sebagai duplikat**. Keberadaan data duplikat ini dapat mempengaruhi akurasi sistem rekomendasi karena menyebabkan bias dalam analisis perilaku pengguna terhadap destinasi wisata. Oleh karena itu, baris-baris duplikat ini sebaiknya dihapus agar model yang dibangun lebih akurat dan representatif terhadap preferensi pengguna sebenarnya.
 
@@ -212,9 +198,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 - **Filter User Pemberi Rating Wisata Yogyakarta**
     Data pengguna difilter berdasarkan interaksi mereka dengan destinasi wisata di Yogyakarta. Pertama, diambil `Place_Id` untuk tempat wisata di kota Yogyakarta. Kemudian, dari dataset rating, diambil `User_Id` yang pernah memberi rating pada tempat tersebut. Terakhir, data `user.csv` difilter agar hanya menyertakan pengguna-pengguna tersebut. Data ini akan digunakan dalam sistem rekomendasi yang berfokus pada Yogyakarta.
 
-    <div style="text-align: center;">
-    <img src="image/userfilter.png" alt="Filter User" />
-    </div>
+    ![Filter User](image/userfilter.png)
 
     Data `user_filtered` menunjukkan daftar pengguna yang **pernah memberikan rating pada tempat wisata di Yogyakarta**. Dari hasil tersebut dapat disimpulkan bahwa:
     * **Pengguna berasal dari berbagai daerah** di Indonesia, seperti Semarang, Bekasi, Cirebon, dan Lampung, bukan hanya dari Yogyakarta saja.
@@ -223,17 +207,13 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 
 - **Pengecekan Informasi Dataset**
 
-    <div style="text-align: center;">
-    <img src="image/userinfo.png" alt="User Info" />
-    </div>
+    ![User Info](image/userinfo.png)
 
     Berdasarkan hasil pemeriksaan menggunakan fungsi `info()`, dataset `user.csv` terdiri dari 300 baris dan 3 kolom, yaitu `User_Id`, `Location`, dan `Age`. Seluruh kolom memiliki jumlah data non-null yang lengkap, menunjukkan tidak adanya missing value. Kolom `User_Id` dan `Age` bertipe data `int64`, sementara `Location` bertipe `object`, yang sesuai dengan tipe data yang dibutuhkan untuk analisis sistem rekomendasi berbasis interaksi pengguna.
 
 - **Pengecekan Missing Value**
-
-    <div style="text-align: center;">
-    <img src="image/mvuser.png" alt="Missing User" />
-    </div>
+    
+    ![Missing User](image/mvuser.png)
 
     Berdasarkan hasil pemeriksaan menggunakan fungsi `isnull().sum()`, tidak ditemukan nilai yang hilang (missing values) pada ketiga kolom dalam dataset `user.csv`, yaitu `User_Id`, `Location`, dan `Age`. Seluruh kolom memiliki nilai lengkap (non-null), sehingga tidak diperlukan proses imputasi atau penanganan khusus terkait data kosong pada dataset ini. Hal ini memastikan bahwa data pengguna siap digunakan dalam proses pemodelan sistem rekomendasi.
 
@@ -244,41 +224,31 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 ### Univariate Analysis
 - **Analisis Distribusi Kategori Wisata Yogyakarta**
 
-    <div style="text-align: center;">
-    <img src="image/distribusicategory.png" alt="Distribusi Kategori Wisata" />
-    </div>
+    ![Distribusi Kategori Wisata](image/distribusicategory.png)
 
     Berdasarkan visualisasi tersebut dapat disimpulkan bahwa **Taman Hiburan** mendominasi sebagai kategori wisata terbanyak di Yogyakarta dengan **36 lokasi**, menunjukkan popularitas dan pertumbuhan yang tinggi untuk jenis wisata ini. Disusul oleh kategori **Bahari** sebanyak **34 lokasi**, yang menandakan daya tarik besar wisata air seperti pantai dan danau. Kategori **Budaya** juga menempati porsi signifikan dengan **30 lokasi**, mencerminkan kekayaan warisan budaya di wilayah tersebut. Sementara itu, **Cagar Alam** tercatat sebanyak **23 lokasi**, mengindikasikan perhatian terhadap wisata berbasis pelestarian alam. Di sisi lain, **Pusat Perbelanjaan** hanya memiliki **3 lokasi**, menunjukkan bahwa wisata belanja bukanlah fokus utama pariwisata di Yogyakarta. Distribusi ini secara visual tampak cukup merata pada empat kategori utama, dengan penurunan tajam hanya pada kategori belanja.
 
 - **Analisis Distribusi Rating Wisata Yogyakarta**
 
-    <div style="text-align: center;">
-    <img src="image/distribusirating.png" alt="Distribusi Rating Wisata" />
-    </div>
+    ![Distribusi Rating Wisata](image/distribusirating.png)
 
     Berdasarkan visualisasi diagram batang, terlihat distribusi jumlah tempat wisata di Yogyakarta menurut rating dengan skala 1 hingga 5. Pada sumbu X ditampilkan nilai rating, sementara sumbu Y menunjukkan jumlah tempat wisata yang memperoleh masing-masing rating tersebut. Hasilnya memperlihatkan bahwa tempat wisata dengan rating 5 mendominasi, menandakan banyak destinasi yang mendapatkan penilaian sangat baik dari pengunjung. Selain itu, jumlah tempat wisata cenderung meningkat secara bertahap dari rating terendah hingga tertinggi, dengan rating 1 memiliki jumlah paling sedikit, yang menunjukkan bahwa hanya sedikit tempat wisata yang mendapat penilaian kurang baik.
 
 - **Analisis Distribusi User yang Berwisata ke Yogyakarta**
 
-    <div style="text-align: center;">
-    <img src="image/distribusiuser.png" alt="Distribusi User" />
-    </div>
+    ![Distribusi User](image/distribusiuser.png)
 
     Berdasarkan analisis distribusi usia pengguna yang berinteraksi dengan destinasi wisata di Yogyakarta, mayoritas berada pada rentang usia muda hingga dewasa awal, dengan puncak konsentrasi sekitar usia 30 tahun. Temuan ini memberikan gambaran penting untuk sistem rekomendasi tempat wisata, karena preferensi dan kebutuhan wisatawan cenderung berbeda berdasarkan kelompok usia. Dengan memahami bahwa pengguna utama berasal dari usia produktif, sistem rekomendasi dapat dirancang untuk lebih mengutamakan destinasi yang sesuai dengan minat dan aktivitas populer di kalangan kelompok usia tersebut. Penyesuaian ini diharapkan dapat meningkatkan relevansi rekomendasi dan kepuasan pengguna dalam memilih tempat wisata di Yogyakarta.
 
 - **Analisis Distribusi Tempat Wisata dengan Rating Terbanyak**
 
-    <div style="text-align: center;">
-    <img src="image/distribusiwisata.png" alt="Distribusi Wisata" />
-    </div>
+    ![Distribusi Wisata](image/distribusiwisata.png)
 
     Visualisasi tempat wisata dengan jumlah rating terbanyak menunjukkan bahwa **Pantai Parangtritis** menduduki peringkat pertama sebagai destinasi yang paling sering diberi rating oleh pengguna, diikuti oleh **Pantai Kesirat** dan **Taman Sungai Mudal**. Tempat-tempat ini menonjol dalam hal jumlah interaksi pengunjung, yang mengindikasikan popularitas serta tingkat kunjungan yang tinggi. Informasi ini sangat penting dalam pengembangan sistem rekomendasi berbasis collaborative filtering, karena destinasi dengan banyak rating menyediakan data preferensi yang lebih kaya. Hal ini memungkinkan sistem untuk lebih akurat dalam mengenali pola minat pengguna dan merekomendasikan tempat wisata serupa yang berpotensi disukai oleh pengguna lain dengan preferensi yang sama.
 
 - **Analisis Distribusi User dengan Rating Terbanyak**
 
-    <div style="text-align: center;">
-    <img src="image/distribusipenggunaaktif.png" alt="Distribusi Pengguna" />
-    </div>
+    ![Distribusi Pengguna](image/distribusipenggunaaktif.png)
 
     Visualisasi diagram batang vertikal di atas menunjukkan **10 pengguna paling aktif** dalam memberikan rating terhadap tempat wisata di Yogyakarta, yang diidentifikasi berdasarkan User ID. Pengguna dengan ID **276** menjadi yang paling aktif, memberikan hingga **20 rating**, diikuti oleh beberapa pengguna lain dengan aktivitas yang juga tinggi. Kehadiran pengguna-pengguna aktif seperti ini sangat penting dalam pengembangan **sistem rekomendasi berbasis collaborative filtering**, karena mereka menyumbangkan banyak data preferensi yang dapat membantu algoritma mengenali pola kesamaan minat antar pengguna. Informasi ini juga berharga untuk evaluasi kualitas destinasi wisata berdasarkan pengalaman langsung pengguna.
 
@@ -336,15 +306,11 @@ Tahapan data preparation penting dilakukan dalam membangun sistem rekomendasi. P
 
     Strukturisasi ini menjadi fondasi penting dalam membangun sistem rekomendasi yang relevan dan personal. Melalui representasi numerik dari konten wisata, algoritma dapat menghitung kemiripan antar destinasi, sehingga mampu memberikan rekomendasi yang sesuai dengan preferensi pengguna berdasarkan konten yang mereka sukai.
 
-    <div style="text-align: center;">
-    <img src="image/cbdata.png" alt="Data Frame" />
-    </div>
+    ![Data Frame](image/cbdata.png)
 
     DataFrame Baru yang telah buat ditemukannya duplikasi data, sehingga tidak diperlukannya penanganan yang lebih lanjut.
 
-    <div style="text-align: center;">
-    <img src="image/cbduplicate.png" alt="Duplicate DataFrame" />
-    </div>
+    ![Duplicate DataFrame](image/cbduplicate.png)
 
 - **TF-IDF**
 
@@ -362,9 +328,7 @@ Tahapan data preparation penting dilakukan dalam membangun sistem rekomendasi. P
 
     Agar lebih mudah dianalisis dan divisualisasikan, matriks sparse ini kemudian diubah menjadi **dense array** menggunakan `.toarray()` dan dikonversi menjadi *pandas DataFrame* bernama `tfidf_df`. Dengan struktur tabular ini, setiap baris mewakili satu tempat wisata, sedangkan setiap kolom menunjukkan keberadaan fitur (kata kunci kategori) dalam bentuk angka (frekuensi kata).
 
-    <div style="text-align: center;">
-    <img src="image/cbmatrix.png" alt="Matrix" />
-    </div>
+    ![Matrix](image/cbmatrix.png)
 
     Contoh tampilan awal dari `tfidf_df` menunjukkan bahwa tempat wisata pertama memiliki fitur `hiburan` dan `taman`, sedangkan tempat lainnya lebih menonjol pada fitur `budaya`. Representasi numerik ini nantinya menjadi dasar dalam perhitungan kemiripan antar tempat wisata, yang akan digunakan untuk menghasilkan rekomendasi wisata yang relevan berdasarkan kesamaan konten.
 
@@ -404,17 +368,13 @@ Tahapan data preparation penting dilakukan dalam membangun sistem rekomendasi. P
 
     Langkah berikutnya adalah membagi data ke dalam set pelatihan dan validasi. Namun, sebelum proses pembagian dilakukan, data perlu **diacak terlebih dahulu secara keseluruhan**. Pengacakan ini bertujuan untuk memastikan distribusi data pada set pelatihan dan validasi menjadi lebih merata. Tanpa proses ini, model berisiko mempelajari pola yang bias karena urutan data yang seragam atau terlalu mirip. Dengan pengacakan, kita memastikan bahwa model dilatih dengan representasi data yang lebih beragam dan general. Berikut adalah hasil dari proses pengacakan data.
 
-    <div style="text-align: center;">
-    <img src="image/acakdata.png" alt="Data Acak" />
-    </div>
+    ![Data Acak](image/acakdata.png)
 
     Selanjutnya, dilakukan pemisahan informasi yang akan menjadi **input** dan **output** untuk model. Kolom `user` dan `wisata` yang telah di-encode menjadi angka dikombinasikan dan disimpan dalam variabel `x` sebagai **masukan model**. Sementara itu, kolom `Place_Ratings` digunakan sebagai **target yang diprediksi**, kemudian dinormalisasi ke skala **0 hingga 1** untuk membantu stabilitas dan efisiensi pembelajaran model.
 
     Setelah itu, data dibagi menjadi dua bagian: **80% untuk pelatihan** dan **20% untuk validasi**. Pembagian ini penting untuk memastikan bahwa model dilatih pada data yang representatif, dan diuji pada data yang benar-benar baru. Validasi ini membantu mengevaluasi kemampuan model dalam melakukan generalisasi, serta mencegah overfitting. Berikut hasil split data
 
-    <div style="text-align: center;">
-    <img src="image/splitdata.png" alt="Split Data" />
-    </div>
+    ![Split Data](image/splitdata.png)
 
 ## Modeling
 Pada tahap modeling, kita akan menggunakan 2 pendekatan, yaitu **Content-Based Filtering** dan **Collaborative Filtering** untuk membangun sistem rekomendasi tempat wisata Yogyakarta. 
@@ -432,9 +392,7 @@ Pendekatan ini digunakan untuk memberikan rekomendasi tempat wisata berdasarkan 
 - **Menyusun Matrix Cosine Similarity**
     Matriks cosine similarity yang dihasilkan kemudian diubah menjadi **DataFrame** untuk memudahkan analisis. Baris dan kolom pada DataFrame ini berisi nama-nama tempat wisata, dan setiap nilai di dalamnya menunjukkan tingkat kemiripan antara dua tempat. DataFrame ini nantinya dapat digunakan untuk mencari tempat wisata yang paling mirip dengan tempat tertentu berdasarkan kontennya.
 
-    <div style="text-align: center;">
-    <img src="image/similarity.png" alt="Cosine Similarity" />
-    </div>
+    ![Cosine Similarity](image/similarity.png)
 
     Matriks visualisasi di atas berukuran **126 x 126**, yang menggambarkan tingkat kemiripan antar 126 tempat wisata di Yogyakarta. Setiap nilai dalam matriks menunjukkan seberapa mirip dua tempat wisata berdasarkan kategori kontennya, di mana nilai 1 berarti kemiripan sangat tinggi dan nilai 0 berarti tidak ada kemiripan. Matriks ini kemudian digunakan sebagai dasar untuk merekomendasikan tempat wisata yang serupa berdasarkan tingkat kemiripan konten kategori, sehingga memudahkan pengguna dalam menemukan destinasi wisata yang relevan dengan preferensi mereka.
 
@@ -446,9 +404,7 @@ Pendekatan ini digunakan untuk memberikan rekomendasi tempat wisata berdasarkan 
 
    Ketika pengguna memilih **tempat wisata tertentu**, sistem akan mencari tempat-tempat wisata Yogyakarta dengan **tingkat kemiripan tertinggi** berdasarkan kategori yang dimiliki oleh tempat tersebut. Rekomendasi yang diberikan mencakup 5 tempat wisata yang paling mirip dengan tempat wisata pilihan pengguna.
 
-<div style="text-align: center;">
-    <img src="image/cbhasil.png" alt="Rekomendasi Content Based" />
-</div>
+   ![Rekomendasi Content Based](image/cbhasil.png)
 
    Misalnya, jika pengguna memilih **"Candi Prambanan"**, maka sistem akan merekomendasikan 5 tempat wisata Yogyakarta teratas dengan kategori serupa, seperti *Keraton Yogyakarta*, *Museum Benteng Vredeburg Yogyakarta*, dan *Taman Budaya Yogyakarta*. Rekomendasi ini didasarkan pada kesamaan kategori yang dimiliki oleh tempat-tempat wisata tersebut, sehingga memberikan alternatif destinasi yang relevan dan menarik bagi pengguna.
 
@@ -499,9 +455,8 @@ Pada tahap **Collaborative Filtering**, sistem rekomendasi dikembangkan dengan m
 
 #### Hasil Rekomendasi
 
-  <div style="text-align: center;">
-    <img src="image/hasilcollaborative.png" alt="Rekomendasi Collaborative Filtering" />
-  </div>
+  ![Rekomendasi Collaborative Filtering](image/hasilcollaborative.png)
+
   Setelah proses pelatihan selesai, model dapat menghasilkan **Top-N rekomendasi tempat wisata** di Yogyakarta berdasarkan prediksi rating. Sebagai contoh, jika seorang pengguna memiliki ketertarikan pada tempat-tempat dengan nuansa budaya dan alam seperti **Keraton Yogyakarta**, **Puncak Gunung Api Purba - Nglanggeran**, dan **Candi Sewu**, maka sistem akan menyarankan tempat-tempat lain yang memiliki karakteristik serupa.
 
   Sebagai ilustrasi, untuk pengguna dengan ID `162`, sistem berhasil mengidentifikasi preferensi terhadap tempat wisata budaya, taman hiburan, dan cagar alam, seperti terlihat dari lima lokasi dengan rating tertinggi yang pernah dikunjungi: **Keraton Yogyakarta**, **Jogja Exotarium**, **Gunung Api Purba Nglanggeran**, **Pasar Beringharjo**, dan **Candi Sewu**.
@@ -573,9 +528,7 @@ Pada tahap **Collaborative Filtering**, sistem rekomendasi dikembangkan dengan m
 
 #### Hasil Evaluasi Model Content-Based Filtering
 
-  <div style="text-align: center;">
-    <img src="image/evaluasicb.png" alt="Evaluasi Content-Based" />
-  </div>
+  ![Evaluasi Content-Based](image/evaluasicb.png)
   
   Pada hasil evaluasi, ketiga metrik utama, yaitu precision, recall, dan f1-score yang menunjukkan nilai sempurna yaitu **1.00**. Hal ini menunjukkan bahwa sistem rekomendasi berhasil mengenali dan menyarankan semua tempat wisata yang memang relevan berdasarkan kategori yang sama, serta tidak merekomendasikan tempat yang tidak relevan.
 
@@ -609,9 +562,7 @@ Keterangan:
 
 #### Hasil Evaluasi Model Collaborative Filtering
 
-  <div style="text-align: center;">
-    <img src="image/rmse.png" alt="Evaluasi Collaborative Filtering" />
-  </div>
+  ![Evaluasi Collaborative Filtering](image/rmse.png)
 
   Grafik di atas menunjukkan perubahan nilai *Root Mean Squared Error* (RMSE) selama proses pelatihan model rekomendasi. Terlihat bahwa RMSE pada data pelatihan (train) mengalami penurunan yang konsisten dan signifikan dari sekitar 0.35 hingga mencapai sekitar 0.22 seiring bertambahnya jumlah epoch. Penurunan ini menunjukkan bahwa model mampu mempelajari pola dari data pelatihan dengan baik.
 
