@@ -577,4 +577,5 @@ Keterangan:
 
 ## Referensi:
 \[1] Hartatik, Y., et al. (2021). *Sistem Rekomendasi Tempat Wisata dengan Collaborative Filtering*. Jurnal Informatika Global, [Link](https://ejournal.uigm.ac.id/index.php/IG/article/download/2695/1767)
+
 \[2] Lestari, M. R., et al. (2022). *Aplikasi Sistem Rekomendasi Tempat Wisata Menggunakan Metode Content-Based Filtering*. Jurnal Komputer Terapan, [Link](https://jurnal.pcr.ac.id/index.php/jkt/article/view/5214)
