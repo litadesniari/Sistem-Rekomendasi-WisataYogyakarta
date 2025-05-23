@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-![Cover](image/yogyakarta.png)
+![Cover](image/Yogyakarta.png)
 
 Sektor pariwisata merupakan salah satu penggerak utama perekonomian Indonesia yang terus berkembang. Daerah Istimewa Yogyakarta (DIY) dikenal luas sebagai salah satu destinasi wisata unggulan di Tanah Air, berkat kekayaan budaya, sejarah, seni, dan keindahan alamnya yang memikat. Mulai dari Candi Prambanan yang megah, Keraton Yogyakarta yang sarat nilai tradisi, hingga pantai-pantai eksotis seperti Parangtritis, Yogyakarta menawarkan pengalaman wisata yang beragam dan menarik. Namun, banyaknya pilihan destinasi wisata sering kali membuat wisatawan merasa bingung dalam menentukan tempat mana yang paling sesuai dengan minat dan preferensi pribadi mereka.
 
