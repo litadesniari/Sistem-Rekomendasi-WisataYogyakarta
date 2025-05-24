@@ -6,13 +6,13 @@
 
 Sektor pariwisata merupakan salah satu penggerak utama perekonomian Indonesia yang terus berkembang. Daerah Istimewa Yogyakarta (DIY) dikenal luas sebagai salah satu destinasi wisata unggulan di Tanah Air, berkat kekayaan budaya, sejarah, seni, dan keindahan alamnya yang memikat. Mulai dari Candi Prambanan yang megah, Keraton Yogyakarta yang sarat nilai tradisi, hingga pantai-pantai eksotis seperti Parangtritis, Yogyakarta menawarkan pengalaman wisata yang beragam dan menarik. Namun, banyaknya pilihan destinasi wisata sering kali membuat wisatawan merasa bingung dalam menentukan tempat mana yang paling sesuai dengan minat dan preferensi pribadi mereka.
 
-Dalam era digital seperti saat ini, kebutuhan akan informasi yang cepat, relevan, dan personal semakin meningkat. Oleh karena itu, penerapan **sistem rekomendasi wisata berbasis teknologi** menjadi solusi strategis yang tidak hanya membantu wisatawan dalam memilih destinasi yang sesuai, tetapi juga meningkatkan kualitas pengalaman berwisata secara keseluruhan. Sistem rekomendasi memungkinkan pengguna untuk memperoleh saran destinasi berdasarkan preferensi pribadi, riwayat kunjungan, atau perilaku wisatawan lain yang memiliki kesamaan minat.
+Dalam era digital seperti saat ini, kebutuhan akan informasi yang cepat, relevan, dan personal semakin meningkat. Oleh karena itu, penerapan **sistem rekomendasi wisata** menjadi solusi strategis yang tidak hanya membantu wisatawan dalam memilih destinasi yang sesuai, tetapi juga meningkatkan kualitas pengalaman berwisata secara keseluruhan. Sistem rekomendasi memungkinkan pengguna untuk memperoleh saran destinasi berdasarkan preferensi pribadi, riwayat kunjungan, atau perilaku wisatawan lain yang memiliki kesamaan minat.
 
 Sistem rekomendasi terbukti mampu meningkatkan kenyamanan dan efisiensi dalam pengambilan keputusan. Dalam konteks pariwisata, dua pendekatan utama yang sering digunakan adalah **collaborative filtering** dan **content-based filtering**. Menurut penelitian yang dilakukan oleh Hartatik et al. (2021), algoritma *collaborative filtering* sangat efektif dalam memberikan rekomendasi wisata yang akurat. Algoritma ini bekerja dengan menganalisis perilaku dan preferensi pengguna lain yang memiliki pola aktivitas serupa, sehingga dapat menyarankan destinasi yang kemungkinan besar juga akan disukai oleh pengguna baru ([Hartatik et al., 2021](https://ejournal.uigm.ac.id/index.php/IG/article/download/2695/1767)).
 
 Di sisi lain, pendekatan *content-based filtering* memberikan rekomendasi berdasarkan kesamaan atribut atau konten dari destinasi wisata itu sendiri, seperti kategori tempat (alam, budaya, sejarah), lokasi geografis, atau fasilitas yang tersedia. Penelitian oleh Lestari et al. (2022) menunjukkan bahwa metode ini mampu menghasilkan saran destinasi yang lebih personal dan kontekstual sesuai dengan preferensi pengguna ([Lestari et al., 2022](https://jurnal.pcr.ac.id/index.php/jkt/article/view/5214)). Keunggulan utama dari pendekatan ini adalah kemampuannya untuk tetap memberikan rekomendasi yang relevan meskipun data interaksi pengguna masih terbatas.
 
-Dengan menggabungkan kedua pendekatan tersebut, sistem rekomendasi dapat menjadi lebih tangguh dan adaptif dalam memahami kebutuhan wisatawan. Implementasi teknologi ini sangat potensial untuk diterapkan pada platform wisata digital di Yogyakarta, baik dalam bentuk aplikasi mobile, website, maupun sistem informasi di pusat-pusat informasi turis. Selain meningkatkan kepuasan pengunjung, penerapan sistem rekomendasi juga dapat membantu pemerintah daerah dan pelaku industri pariwisata dalam mengelola arus kunjungan, memperkenalkan destinasi yang kurang populer, serta meningkatkan daya saing sektor pariwisata secara keseluruhan.
+Dengan menggunakan kedua pendekatan tersebut, sistem rekomendasi dapat menjadi lebih tangguh dan adaptif dalam memahami kebutuhan wisatawan. Implementasi teknologi ini sangat potensial untuk diterapkan pada platform wisata digital di Yogyakarta, baik dalam bentuk aplikasi mobile, website, maupun sistem informasi di pusat-pusat informasi turis. Selain meningkatkan kepuasan pengunjung, penerapan sistem rekomendasi juga dapat membantu pemerintah daerah dan pelaku industri pariwisata dalam mengelola arus kunjungan, memperkenalkan destinasi yang kurang populer, serta meningkatkan daya saing sektor pariwisata secara keseluruhan.
 
 ## Business Understanding
 ### Problem Statements
@@ -43,7 +43,7 @@ Berdasarkan rumusan masalah yang telah dipaparkan di atas, maka proyek penelitia
 Dataset yang digunakan dalam proyek ini adalah [Indonesia Tourism Destination Dataset](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination) yang diperoleh dari Kaggle. Dataset ini berisi informasi lengkap mengenai destinasi wisata di Indonesia, data pengguna, rating yang diberikan pengguna terhadap tempat wisata, serta paket wisata yang tersedia. Dataset terdiri dari empat file utama, yaitu `tourism_with_id.csv` yang memuat data destinasi wisata lengkap dengan kategori, lokasi, dan informasi geografis; `user.csv` yang berisi data identitas pengguna; `tourism_rating.csv` yang mencatat interaksi berupa rating dari pengguna terhadap destinasi wisata; serta `package_tourism.csv` yang berisi data paket wisata yang menggabungkan beberapa destinasi dalam satu paket. Namun, pada proyek ini hanya menggunakan tiga file yang penting yaitu data wisata, data pengguna, serta data rating wisata yang akan digunakan dalam pembangunan sistem rekomendasi wisata berbasis content-based filtering dan collaborative filtering dengan fokus wilayah pada destinasi wisata di Yogyakarta. Jumlah data pada ketiga file tersebut menunjukkan bahwa file data wisata berisi 437 entri yang tersebar di lima kota besar, yaitu Bandung, Jakarta, Yogyakarta, Semarang, dan Surabaya. Namun, dalam proyek ini, fokus hanya akan diarahkan pada data wisata yang berada di wilayah Kota Yogyakarta saja.
 
 ### Deskripsi Data
-Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem rekomendasi tempat wisata:
+Dataset ini terdiri dari empat file utama, tetapi yang digunakan hanya 3 file yang berfungsi untuk membangun sistem rekomendasi tempat wisata:
 1. **`tourism_with_id.csv`**
    Berisi data destinasi wisata dengan informasi seperti ID tempat, nama, deskripsi, kategori, kota, harga, rating, dan koordinat lokasi (latitude & longitude).
 2. **`user.csv`**
@@ -153,7 +153,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
         jumlah_duplikat = place.duplicated().sum()
         print(f"Jumlah baris duplikat: {jumlah_duplikat}") 
     ```
-    Saat dilakukan pengecekan tidak terdapat data yang duplikat pada dataset.
+    Saat dilakukan pengecekan tidak terdapat data yang duplikat pada dataset, sehingga tidak diperlukan penanganan lebih lanjut.
 
 ### Data Understanding untuk Rating Dataset
 - **Filter Rating berdasarkan Wisata Wilayah Yogyakarta**
@@ -196,6 +196,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
 
 ### Data Understanding untuk User Dataset
 - **Filter User Pemberi Rating Wisata Yogyakarta**
+    
     Data pengguna difilter berdasarkan interaksi mereka dengan destinasi wisata di Yogyakarta. Pertama, diambil `Place_Id` untuk tempat wisata di kota Yogyakarta. Kemudian, dari dataset rating, diambil `User_Id` yang pernah memberi rating pada tempat tersebut. Terakhir, data `user.csv` difilter agar hanya menyertakan pengguna-pengguna tersebut. Data ini akan digunakan dalam sistem rekomendasi yang berfokus pada Yogyakarta.
 
     ![Filter User](image/userfilter.png)
@@ -218,6 +219,7 @@ Dataset ini terdiri dari tiga file utama yang berfungsi untuk membangun sistem r
     Berdasarkan hasil pemeriksaan menggunakan fungsi `isnull().sum()`, tidak ditemukan nilai yang hilang (missing values) pada ketiga kolom dalam dataset `user.csv`, yaitu `User_Id`, `Location`, dan `Age`. Seluruh kolom memiliki nilai lengkap (non-null), sehingga tidak diperlukan proses imputasi atau penanganan khusus terkait data kosong pada dataset ini. Hal ini memastikan bahwa data pengguna siap digunakan dalam proses pemodelan sistem rekomendasi.
 
 - **Pengecekan Data Duplikat**
+    
     Langkah berikutnya adalah memeriksa adanya data yang duplikat dalam dataset. Hasil pengecekan dengan fungsi `.duplicated()` menunjukkan bahwa **tidak ditemukan baris yang terduplikasi** pada dataset `user.csv`, sehingga seluruh data bersifat unik dan tidak perlu dilakukan penghapusan duplikasi.
 
 ## Exploratory Data Analysis (EDA)
@@ -272,9 +274,11 @@ Tahapan data preparation penting dilakukan dalam membangun sistem rekomendasi. P
     Dengan menghapus kolom-kolom tersebut, kita dapat menyederhanakan struktur data, mengurangi kompleksitas model, serta mempercepat proses pelatihan dan inferensi. Hal ini juga dapat membantu mencegah overfitting, karena hanya fitur-fitur penting yang digunakan dalam pembuatan model rekomendasi. Akhirnya, langkah ini bertujuan untuk meningkatkan akurasi dan efisiensi sistem rekomendasi wisata yang dibangun dari dataset destinasi wisata Indonesia khususnya daerah Yogyakarta.
 
 - **Penanganan Missing Value**
+    
     Sebelum dilakukan penghapusan kolom yang tidak diperlukan, ditemukan adanya *missing value* pada dataset `tourism_with_id`, khususnya pada kolom `Time_Minutes` dan `Unnamed: 11`. Namun, karena kolom-kolom tersebut tidak relevan dalam konteks pembangunan sistem rekomendasi berbasis *content-based filtering* maupun *collaborative filtering*, maka kolom-kolom tersebut dihapus dari DataFrame. Oleh karena itu, penanganan *missing value* tidak dilakukan, karena data yang mengandung nilai kosong tersebut memang berasal dari kolom yang tidak akan digunakan dalam proses pemodelan. Penghapusan ini bertujuan untuk menyederhanakan struktur data, mengurangi kompleksitas yang tidak perlu, serta meningkatkan efisiensi dan akurasi sistem rekomendasi yang dibangun.
 
 - **Penghapusan Baris Duplikat**
+    
     Sebagai langkah terakhir dalam proses pembersihan data, dilakukan identifikasi serta penghapusan baris-baris yang bersifat duplikat. Proses ini diawali dengan pemeriksaan jumlah duplikasi menggunakan fungsi `duplicated().sum()`, yang mendeteksi keberadaan baris-baris dengan nilai identik di seluruh kolom dataset.
 
     Pada tahap *data understanding*, ditemukan bahwa dataset `tourism_rating.csv` mengandung 23 baris data yang terduplikasi. Keberadaan duplikasi ini dapat memberikan dampak negatif terhadap akurasi sistem rekomendasi, karena dapat menyebabkan bias dalam analisis perilaku pengguna terhadap destinasi wisata tertentu. Oleh karena itu, baris-baris duplikat tersebut dihapus agar model rekomendasi yang dibangun dapat mencerminkan preferensi pengguna secara lebih akurat dan objektif.
@@ -292,7 +296,7 @@ Tahapan data preparation penting dilakukan dalam membangun sistem rekomendasi. P
 
     Selanjutnya, diambil beberapa kolom penting dari dataset `place_yogya` yang relevan untuk pembuatan sistem rekomendasi, yaitu `Place_Id`, `Place_Name`, dan `Category`. Masing-masing kolom tersebut dikonversi dari format pandas Series menjadi list Python menggunakan fungsi `.tolist()` dan disimpan ke dalam variabel `place_ids`, `place_names`, dan `categories`.
 
-    Konversi ini sangat krusial karena berbagai teknik pemrosesan teks dan ekstraksi fitur konten—seperti TF-IDF vectorizer atau count vectorizer—memerlukan input dalam bentuk list. Dengan format list, data menjadi lebih mudah diolah untuk membangun representasi numerik dari tempat wisata berdasarkan nama atau kategori, sehingga memungkinkan sistem merekomendasikan destinasi yang relevan berdasarkan kemiripan konten.
+    Konversi ini sangat krusial karena berbagai teknik pemrosesan teks dan ekstraksi fitur konten seperti TF-IDF vectorizer atau count vectorizer yang memerlukan input dalam bentuk list. Dengan format list, data menjadi lebih mudah diolah untuk membangun representasi numerik dari tempat wisata berdasarkan nama atau kategori, sehingga memungkinkan sistem merekomendasikan destinasi yang relevan berdasarkan kemiripan konten.
 
     Untuk memastikan proses konversi berjalan dengan benar, dilakukan pengecekan panjang list menggunakan fungsi `len()`. Hal ini memastikan bahwa setiap entri telah berhasil diekstraksi dan siap digunakan dalam proses pembentukan fitur konten untuk sistem rekomendasi yang efisien dan akurat.
 
@@ -308,7 +312,7 @@ Tahapan data preparation penting dilakukan dalam membangun sistem rekomendasi. P
 
     ![Data Frame](image/cbdata.png)
 
-    DataFrame Baru yang telah buat ditemukannya duplikasi data, sehingga tidak diperlukannya penanganan yang lebih lanjut.
+    DataFrame Baru yang telah dibuat tidak ditemukannya duplikasi data, sehingga tidak diperlukannya penanganan yang lebih lanjut.
 
     ![Duplicate DataFrame](image/cbduplicate.png)
 
@@ -318,7 +322,7 @@ Tahapan data preparation penting dilakukan dalam membangun sistem rekomendasi. P
 
     Proses dimulai dengan menginisialisasi objek `CountVectorizer`, kemudian melatihnya (*fit*) pada kolom `Category` dari DataFrame `wisata`. Kolom ini berisi kategori dari masing-masing tempat wisata, seperti "alam", "bahari", "budaya", dan lain sebagainya. Dengan melakukan pelatihan ini, `CountVectorizer` akan mempelajari seluruh kosakata unik yang terdapat dalam kolom kategori, serta membangun daftar fitur yang mencerminkan kata-kata penting dalam dataset.
 
-    Setelah proses pelatihan, fitur-fitur yang berhasil diekstraksi dapat ditampilkan menggunakan fungsi `get_feature_names_out()`. Fitur-fitur inilah yang nantinya akan digunakan untuk membangun matriks fitur — dasar dari perhitungan kemiripan antar tempat wisata dalam *content-based filtering*.
+    Setelah proses pelatihan, fitur-fitur yang berhasil diekstraksi dapat ditampilkan menggunakan fungsi `get_feature_names_out()`. Fitur-fitur inilah yang nantinya akan digunakan untuk membangun matriks fitur sebagai dasar dari perhitungan kemiripan antar tempat wisata dalam *content-based filtering*.
 
     Teknik ini sangat penting karena memungkinkan sistem memahami konten dari setiap destinasi wisata dalam bentuk numerik, sehingga dapat digunakan untuk menghitung skor kemiripan antar tempat dan menghasilkan rekomendasi wisata yang sesuai dengan minat pengguna berdasarkan kategori tempat yang pernah atau sering mereka lihat.
 
@@ -410,13 +414,13 @@ Pendekatan ini digunakan untuk memberikan rekomendasi tempat wisata berdasarkan 
 
 #### Kelebihan dan Kekurangan Content-Based Filtering
 
-**Kelebihan Content-Based Filtering:**
+**Kelebihan :**
 
    1. **Personalisasi Tinggi**, rekomendasi disesuaikan dengan preferensi unik tiap pengguna.
    2. **Tidak Bergantung Data Pengguna Lain**, dapat bekerja dengan data pengguna sendiri tanpa perlu data orang lain.
    3. **Mampu Rekomendasi Item Baru**, dapat memberikan rekomendasi item baru selama ada informasi kontennya.
 
-**Kekurangan Content-Based Filtering:**
+**Kekurangan :**
 
    1. **Cold Start untuk Pengguna dan Item Baru**, sulit merekomendasikan tanpa data awal dari pengguna atau fitur lengkap pada item.
    2. **Cenderung Terbatas**, sering merekomendasikan hal yang mirip dengan preferensi lama, kurang eksplorasi.
@@ -467,13 +471,13 @@ Pada tahap **Collaborative Filtering**, sistem rekomendasi dikembangkan dengan m
 
 #### Kelebihan dan Kekurangan Collaborative Filtering
 
-**Kelebihan Collaborative Filtering:**
+**Kelebihan :**
 
   1. **Personalisasi yang Tinggi**, rekomendasi disesuaikan langsung berdasarkan preferensi pengguna yang mirip, sehingga hasilnya lebih relevan secara personal.
   2. **Tidak Perlu Informasi Item**, cukup menggunakan data interaksi pengguna (seperti rating atau klik), tanpa perlu mengetahui fitur atau deskripsi dari item.
   3. **Dapat Menemukan Pola Tersembunyi**, mampu mengidentifikasi hubungan antar item atau pengguna yang tidak terlihat secara eksplisit.
 
-**Kekurangan Collaborative Filtering:**
+**Kekurangan :**
 
   1. **Cold Start Problem**, sulit memberikan rekomendasi untuk pengguna atau item baru yang belum memiliki cukup data interaksi.
   2. **Data Sparsity**, banyak sistem memiliki interaksi yang jarang (sparse), sehingga sulit menemukan kesamaan antara pengguna atau item.
@@ -485,6 +489,7 @@ Pada tahap **Collaborative Filtering**, sistem rekomendasi dikembangkan dengan m
 
   Dalam model **Content-Based Filtering** yang digunakan untuk sistem rekomendasi tempat wisata di Yogyakarta, terdapat tiga metrik evaluasi utama yang digunakan untuk menilai performa model, yaitu **Precision**, **Recall**, dan **F1-score**. Ketiga metrik ini sangat cocok untuk mengevaluasi tugas klasifikasi biner, yakni dalam memprediksi apakah sepasang tempat wisata dianggap mirip (positif) atau tidak (negatif) berdasarkan kontennya.
 
+#### Formula Precision, Recall, dan F1-Score
 **Precision**
   Precision mengukur seberapa banyak dari tempat wisata yang direkomendasikan benar-benar relevan bagi pengguna:
 
